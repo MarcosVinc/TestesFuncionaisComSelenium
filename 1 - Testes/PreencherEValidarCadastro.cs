@@ -13,7 +13,8 @@ namespace TestesFuncionaisComSelenium
     {
         ChromeDriver driver = new ChromeDriver();
         private DLS dls;
-        private CadastroCampoDeTreinamentoPO page;
+        private CadastroCampoDeTreinamentoPage page;
+
 
 
         public void Inicialização()
@@ -24,7 +25,8 @@ namespace TestesFuncionaisComSelenium
             System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(950, 710);
             driver.Manage().Window.Size = _tamanhoDeTela;
             dls = new DLS(driver);
-            page = new CadastroCampoDeTreinamentoPO(driver);
+            page = new CadastroCampoDeTreinamentoPage(driver);
+
         }
 
         public void Finalização()

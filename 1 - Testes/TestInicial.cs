@@ -4,11 +4,13 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
+
 using System.Threading;
 
 namespace TestesFuncionaisComSelenium
 { 
    class TestInicial
+r
     {
         public bool IsSelected { get; set; }
 
@@ -31,6 +33,7 @@ namespace TestesFuncionaisComSelenium
             //ABRINDO O SITE E COLOCANDO E MUDANDO SEU TAMANHO
 
             driver.Navigate().GoToUrl("file:///A:/CampoTreinamento/componentes.html");
+
             System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(950, 710);
             driver.Manage().Window.Size = _tamanhoDeTela;
             dls = new DLS(driver);
@@ -98,7 +101,6 @@ namespace TestesFuncionaisComSelenium
             alertConfirm.Accept();
             Assert.AreEqual("Confirmado", alertConfirm.Text);
             alertConfirm.Accept();
-
             Fechar();
 
         }
@@ -106,6 +108,7 @@ namespace TestesFuncionaisComSelenium
         [Test]
         public void TestIrParaOGoogle()
         {
+
             
             //Browser Google.com
             driver.Navigate().GoToUrl("https://www.google.com.br/");
@@ -117,10 +120,11 @@ namespace TestesFuncionaisComSelenium
         public void testeAbrirFormulario()
         {
             // Formulario
+
             driver.Navigate().GoToUrl("file:///A:/CampoTreinamento/componentes.html");
             System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(950, 710);
             driver.Manage().Window.Size = _tamanhoDeTela;
-            Thread.Sleep(500);
+            Thread.Sleep(500);r
             driver.Quit();
         }
         [Test]
@@ -133,6 +137,7 @@ namespace TestesFuncionaisComSelenium
             driver.FindElement(By.Id("elementosForm:nome")).GetAttribute("value");
             driver.FindElement(By.Id("elementosForm:sobrenome")).GetAttribute("value");
             Thread.Sleep(500);
+
             Fechar();
         }
         [Test]
@@ -144,6 +149,7 @@ namespace TestesFuncionaisComSelenium
              " Marcos");
             driver.FindElement(By.Id("elementosForm:sugestoes")).GetAttribute("value");
             Thread.Sleep(500);
+
             Fechar();
         }
 
@@ -156,6 +162,7 @@ namespace TestesFuncionaisComSelenium
             Iniciar();
             dls.PreencherCombo("elementosForm:escolaridade", superior);
             Thread.Sleep(500);
+
             Fechar();
         }
 
@@ -169,8 +176,10 @@ namespace TestesFuncionaisComSelenium
             WebElement botao = (WebElement)driver.FindElement(By.Id("buttonSimple"));
             botao.Click();
             Assert.AreEqual("Obrigado!", botao.GetAttribute("value"));
+
             Thread.Sleep(500);
             Fechar();
+
         }
         [Test]
         public void DeveInteragirComLinks()
@@ -180,15 +189,18 @@ namespace TestesFuncionaisComSelenium
             driver.FindElement(By.LinkText("Voltar")).Click();
             Thread.Sleep(500);
             Fechar();
+
         }
         [Test]
         public void DeveBuscarUmTextoNaPagina()
         {
             // Buscar um Texto Na Pagina
+
             Iniciar();
             Assert.AreEqual("Campo de Treinamento", driver.FindElement(By.XPath("/html/body/center/form/h3")).Text);
             Thread.Sleep(500);
             Fechar();
+
         }
     }
 }

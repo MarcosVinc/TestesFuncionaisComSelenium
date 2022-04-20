@@ -14,6 +14,7 @@ namespace TestesFuncionaisComSelenium._1___Testes
         {
             var driver = new ChromeDriver();
             driver.Navigate().GoToUrl("file:///A:/CampoTreinamento/componentes.html");
+
             var _tamanhoDaTela = new System.Drawing.Size(950, 710);
             driver.Manage().Window.Size = _tamanhoDaTela;
 
@@ -36,6 +37,7 @@ namespace TestesFuncionaisComSelenium._1___Testes
         {
             var driver = new ChromeDriver();
             driver.Navigate().GoToUrl("file:///A:/CampoTreinamento/componentes.html");
+
             var _tamanhoDaTela = new System.Drawing.Size(950, 710);
             driver.Manage().Window.Size = _tamanhoDaTela;
             driver.FindElement(By.Id("buttonPopUpHard")).Click();
