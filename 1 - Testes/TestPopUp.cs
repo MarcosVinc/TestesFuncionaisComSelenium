@@ -1,9 +1,10 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Text;
+
 namespace TestesFuncionaisComSelenium._1___Testes
 {
     class TestPopUp
@@ -12,7 +13,8 @@ namespace TestesFuncionaisComSelenium._1___Testes
         public void InteragirComPopUp()
         {
             var driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("file:///C:/Users/Marcos%20Vinicius/Desktop/campo_treinamento/componentes.html");
+            driver.Navigate().GoToUrl("file:///A:/CampoTreinamento/componentes.html");
+
             var _tamanhoDaTela = new System.Drawing.Size(950, 710);
             driver.Manage().Window.Size = _tamanhoDaTela;
 
@@ -34,7 +36,8 @@ namespace TestesFuncionaisComSelenium._1___Testes
         public void InteragirComPopUpSemTitulo()
         {
             var driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("file:///C:/Users/Marcos%20Vinicius/Desktop/campo_treinamento/componentes.html");
+            driver.Navigate().GoToUrl("file:///A:/CampoTreinamento/componentes.html");
+
             var _tamanhoDaTela = new System.Drawing.Size(950, 710);
             driver.Manage().Window.Size = _tamanhoDaTela;
             driver.FindElement(By.Id("buttonPopUpHard")).Click();

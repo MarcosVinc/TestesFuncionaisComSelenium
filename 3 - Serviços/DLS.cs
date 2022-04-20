@@ -40,18 +40,34 @@ namespace TestesFuncionaisComSelenium
             var combo = new SelectElement((IWebElement)element);
             combo.SelectByText(valor);
         }
-        public void ObterTexto(string texto)
+
+        public string ObterTexto(string texto)
         {
-            string text = driver.FindElement(By.Id(texto)).Text;
+            return driver.FindElement(By.XPath(texto)).Text;
         }
 
-        public void CadastarButton(string id_campo)
+        public void CadastarButtonId(string id_campo)
         {
             driver.FindElement(By.Id(id_campo)).Click();
         }
+        public void CadastarButtonXPath(string xp_campo)
+        {
+            driver.FindElement(By.XPath(xp_campo)).Click();
+        }
+
         public void EntrarEmDiferentesAbas()
         {
             Thread.Sleep(500);
         }
+
+        public void InserirEmail(string email, string id_campo) 
+        {           
+            driver.FindElement(By.Id(id_campo)).SendKeys(email);
+        }
+        public void InserirSenha(string id_campo, string texto) 
+        {           
+            driver.FindElement(By.Id(id_campo)).SendKeys(texto);
+        }
+
     }
 }

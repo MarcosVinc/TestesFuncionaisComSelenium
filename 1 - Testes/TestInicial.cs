@@ -5,9 +5,12 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 
-namespace TestesFuncionaisComSelenium._1___Testes
-{
-   public class TestInicial
+using System.Threading;
+
+namespace TestesFuncionaisComSelenium
+{ 
+   class TestInicial
+r
     {
         public bool IsSelected { get; set; }
 
@@ -29,7 +32,8 @@ namespace TestesFuncionaisComSelenium._1___Testes
         {
             //ABRINDO O SITE E COLOCANDO E MUDANDO SEU TAMANHO
 
-            driver.Navigate().GoToUrl("file:///C:/Users/Marcos%20Vinicius/Desktop/campo_treinamento/componentes.html");
+            driver.Navigate().GoToUrl("file:///A:/CampoTreinamento/componentes.html");
+
             System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(950, 710);
             driver.Manage().Window.Size = _tamanhoDeTela;
             dls = new DLS(driver);
@@ -104,21 +108,23 @@ namespace TestesFuncionaisComSelenium._1___Testes
         [Test]
         public void TestIrParaOGoogle()
         {
-            //Browser Google.com
 
-            var driver = new ChromeDriver();
+            
+            //Browser Google.com
             driver.Navigate().GoToUrl("https://www.google.com.br/");
             driver.Manage().Window.FullScreen();
-            driver.Quit();
+            Thread.Sleep(500);
+            driver.Quit ();
         }
         [Test]
         public void testeAbrirFormulario()
         {
             // Formulario
-            var driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("file:///C:/Users/Marcos%20Vinicius/Desktop/campo_treinamento/componentes.html");
+
+            driver.Navigate().GoToUrl("file:///A:/CampoTreinamento/componentes.html");
             System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(950, 710);
             driver.Manage().Window.Size = _tamanhoDeTela;
+            Thread.Sleep(500);r
             driver.Quit();
         }
         [Test]
@@ -130,6 +136,8 @@ namespace TestesFuncionaisComSelenium._1___Testes
             driver.FindElement(By.Id("elementosForm:sobrenome")).SendKeys("Vinicius");
             driver.FindElement(By.Id("elementosForm:nome")).GetAttribute("value");
             driver.FindElement(By.Id("elementosForm:sobrenome")).GetAttribute("value");
+            Thread.Sleep(500);
+
             Fechar();
         }
         [Test]
@@ -140,6 +148,8 @@ namespace TestesFuncionaisComSelenium._1___Testes
             driver.FindElement(By.Id("elementosForm:sugestoes")).SendKeys(" O metodo PASS()Lança um SuccessException com a mensagem e os argumentos que são passados.Isso permite que um teste seja interrompido, com um resultado de sucesso retornado para NUnit." +
              " Marcos");
             driver.FindElement(By.Id("elementosForm:sugestoes")).GetAttribute("value");
+            Thread.Sleep(500);
+
             Fechar();
         }
 
@@ -151,6 +161,8 @@ namespace TestesFuncionaisComSelenium._1___Testes
             var superior = "Superior";
             Iniciar();
             dls.PreencherCombo("elementosForm:escolaridade", superior);
+            Thread.Sleep(500);
+
             Fechar();
         }
 
@@ -159,37 +171,36 @@ namespace TestesFuncionaisComSelenium._1___Testes
         public void DeveInteragirComOsBotoes()
         {
             //Botões
-            var driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("file:///C:/Users/Marcos%20Vinicius/Desktop/campo_treinamento/componentes.html");
-            System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(950, 710);
-            driver.Manage().Window.Size = _tamanhoDeTela;
+            Iniciar();
             driver.FindElement(By.Id("buttonSimple")).Click();
             WebElement botao = (WebElement)driver.FindElement(By.Id("buttonSimple"));
             botao.Click();
             Assert.AreEqual("Obrigado!", botao.GetAttribute("value"));
-            driver.Quit();
+
+            Thread.Sleep(500);
+            Fechar();
+
         }
         [Test]
         public void DeveInteragirComLinks()
         {
             // Interagir com um Link sem ID
-            var driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("file:///C:/Users/Marcos%20Vinicius/Desktop/campo_treinamento/componentes.html");
-            System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(950, 710);
-            driver.Manage().Window.Size = _tamanhoDeTela;
+            Iniciar(); ;
             driver.FindElement(By.LinkText("Voltar")).Click();
-            driver.Quit();
+            Thread.Sleep(500);
+            Fechar();
+
         }
         [Test]
         public void DeveBuscarUmTextoNaPagina()
         {
             // Buscar um Texto Na Pagina
-            var driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("file:///C:/Users/Marcos%20Vinicius/Desktop/campo_treinamento/componentes.html");
-            System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(950, 710);
-            driver.Manage().Window.Size = _tamanhoDeTela;
+
+            Iniciar();
             Assert.AreEqual("Campo de Treinamento", driver.FindElement(By.XPath("/html/body/center/form/h3")).Text);
-            driver.Quit();
+            Thread.Sleep(500);
+            Fechar();
+
         }
     }
 }

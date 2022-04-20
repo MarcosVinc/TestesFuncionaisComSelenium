@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Internal;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -12,10 +14,14 @@ namespace TestesFuncionaisComSelenium
         public void _deveInteragirComAlertSimples()
         {
             // Interafir com um button de alerta simples
+
+
             var driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("file:///C:/Users/Marcos%20Vinicius/Desktop/campo_treinamento/componentes.html");
-            System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(950, 710);
-            driver.Manage().Window.Size = _tamanhoDeTela;
+            driver.Navigate().GoToUrl("file:///A:/CampoTreinamento/componentes.html");
+            var _tamanhoDaTela = new System.Drawing.Size(950, 710);
+            driver.Manage().Window.Size = _tamanhoDaTela;
+            //
+
             driver.FindElement(By.Id("alert")).Click();
             IAlert alert = driver.SwitchTo().Alert();
             Assert.AreEqual("Alert Simples", alert.Text);
@@ -32,9 +38,11 @@ namespace TestesFuncionaisComSelenium
         {
             // Interafir com um button de alerta Confirm
             var driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("file:///C:/Users/Marcos%20Vinicius/Desktop/campo_treinamento/componentes.html");
-            System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(950, 710);
-            driver.Manage().Window.Size = _tamanhoDeTela;
+
+            driver.Navigate().GoToUrl("file:///A:/CampoTreinamento/componentes.html");
+            var _tamanhoDaTela = new System.Drawing.Size(950, 710);
+            driver.Manage().Window.Size = _tamanhoDaTela;
+
             driver.FindElement(By.Id("confirm")).Click();
             IAlert alertConfirm = driver.SwitchTo().Alert();
             Assert.AreEqual("Confirm Simples", alertConfirm.Text);
@@ -51,9 +59,11 @@ namespace TestesFuncionaisComSelenium
             // Formulario
             string numeroParaPreencher = "6000";
             var driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("file:///C:/Users/Marcos%20Vinicius/Desktop/campo_treinamento/componentes.html");
-            System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(950, 710);
-            driver.Manage().Window.Size = _tamanhoDeTela;
+
+            driver.Navigate().GoToUrl("file:///A:/CampoTreinamento/componentes.html");
+            var _tamanhoDaTela = new System.Drawing.Size(950, 710);
+
+
             driver.FindElement(By.Id("prompt")).Click();
             IAlert alert = driver.SwitchTo().Alert();
             Assert.AreEqual("Digite um numero", alert.Text);
