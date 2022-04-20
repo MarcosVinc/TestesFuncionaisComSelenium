@@ -44,6 +44,7 @@ namespace TestesFuncionaisComSelenium._1___Testes
             page.ClicarNoBotaoXPath("/html/body/div[1]/div/div/div/div[1]/form/div[2]/button");
             Thread.Sleep(500);
             page.InserirSenha("password", "SUA SENHA");
+
             page.ClicarNoBotaoXPath("/html/body/div[1]/div/div/div/div/form/div[2]/button");
             Thread.Sleep(500);
             L = page.PegarTexto("/html/body/div[1]/div[1]/div/div[2]/div/div[2]/div/div[1]/div/div/div[2]/div[1]/div[1]/div[2]/div[2]");
