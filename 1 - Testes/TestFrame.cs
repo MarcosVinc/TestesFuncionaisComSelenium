@@ -6,7 +6,6 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Threading;
 
-
 namespace TestesFuncionaisComSelenium._1___Testes
 {
     class TestFrame
@@ -22,7 +21,6 @@ namespace TestesFuncionaisComSelenium._1___Testes
             driver.Quit();
         }
         
-
         [Test]
 
         public void DeveInteragirComFrameButton()

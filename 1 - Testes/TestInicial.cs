@@ -10,7 +10,7 @@ using System.Threading;
 namespace TestesFuncionaisComSelenium
 { 
    class TestInicial
-r
+
     {
         public bool IsSelected { get; set; }
 
@@ -124,7 +124,8 @@ r
             driver.Navigate().GoToUrl("file:///A:/CampoTreinamento/componentes.html");
             System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(950, 710);
             driver.Manage().Window.Size = _tamanhoDeTela;
-            Thread.Sleep(500);r
+            Thread.Sleep(500);
+
             driver.Quit();
         }
         [Test]
@@ -149,7 +150,6 @@ r
              " Marcos");
             driver.FindElement(By.Id("elementosForm:sugestoes")).GetAttribute("value");
             Thread.Sleep(500);
-
             Fechar();
         }
 
