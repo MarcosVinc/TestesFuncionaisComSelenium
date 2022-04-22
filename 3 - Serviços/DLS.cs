@@ -40,6 +40,7 @@ namespace TestesFuncionaisComSelenium
             var combo = new SelectElement((IWebElement)element);
             combo.SelectByText(valor);
         }
+
         public string ObterTexto(string texto)
         {
             return driver.FindElement(By.XPath(texto)).Text;
@@ -57,10 +58,12 @@ namespace TestesFuncionaisComSelenium
         {
             driver.FindElement(By.XPath(xp_campo)).Click();
         }
+
         public void EntrarEmDiferentesAbas()
         {
             Thread.Sleep(500);
         }
+
         public void InserirEmail(string email, string id_campo) 
         {           
             driver.FindElement(By.Id(id_campo)).SendKeys(email);
@@ -69,5 +72,6 @@ namespace TestesFuncionaisComSelenium
         {           
             driver.FindElement(By.Id(id_campo)).SendKeys(texto);
         }
+
     }
 }
