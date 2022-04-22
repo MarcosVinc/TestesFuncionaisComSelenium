@@ -26,9 +26,9 @@ namespace TestesFuncionaisComSelenium._3___Serviços
                 return nome;
             }
         }
-        public double ConvercaoString(string nome)
+        public decimal ConvercaoString(string nome)
         {
-            double conver = Convert.ToDouble(nome);
+            decimal conver = Convert.ToDecimal(nome);
             return conver;
         }
     }

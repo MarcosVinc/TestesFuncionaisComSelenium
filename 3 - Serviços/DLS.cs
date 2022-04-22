@@ -50,6 +50,10 @@ namespace TestesFuncionaisComSelenium
         {
             driver.FindElement(By.Id(id_campo)).Click();
         }
+        public void ClickByCssSelector(string selector_campo)
+        {
+            driver.FindElement(By.CssSelector(selector_campo)).Click();
+        }
         public void CadastarButtonXPath(string xp_campo)
         {
             driver.FindElement(By.XPath(xp_campo)).Click();

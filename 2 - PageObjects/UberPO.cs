@@ -35,6 +35,10 @@ namespace TestesFuncionaisComSelenium._2___PageObjects
         {
             dls.InserirSenha(id, senha);
         }
+        public void CliqueBotaoProximaPagina() 
+        {
+            dls.ClickByCssSelector("div[data-identity='pagination-next']");
+        }
 
     }
 }
