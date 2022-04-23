@@ -18,6 +18,7 @@ namespace TestesFuncionaisComSelenium._1___Testes
         private DLS dls;
         private UberPO page;
         UberLogica ubl = new UberLogica();
+
         public void Inicialização()
         {
             //ABRINDO O SITE E COLOCANDO E MUDANDO SEU TAMANHO
@@ -41,42 +42,46 @@ namespace TestesFuncionaisComSelenium._1___Testes
         {
             Inicialização();
             var objetosViagem = new List<UberViagem>();
-            string A, B, C, D, E, F, G, H, I, J, L, M, N, O, P, Q, R, S, T, U;
             Thread.Sleep(500);
-            page.InserirEmail("Seu email", "useridInput");
+
+            //Login
+            page.InserirEmail("Seu Email", "useridInput");
             page.ClicarNoBotaoXPath("/html/body/div[1]/div/div/div/div[1]/form/div[2]/button");
             Thread.Sleep(500);
-            page.InserirSenha("password", "Sua senha");
+            page.InserirSenha("password", "Sua Senha");
             page.ClicarNoBotaoXPath("/html/body/div[1]/div/div/div/div/form/div[2]/button");
             Thread.Sleep(500);
-            // PAGINA 1
 
-            while (true)
+            // Pegar e somar viagens
+            while (true) // Enquanto o botão de proximo estiver visivel esse while estara em circuito fechado
             {
-                if (driver.FindElement(By.CssSelector("div[data-identity='pagination-next']")).Displayed)
+                if (driver.FindElement(By.CssSelector("div[data-identity='pagination-next']")).Displayed) // Nessa linha eu vejo e o botão proximo esta disponivel para clicar
                 {
-                    var ListaDeViagens = driver.FindElement(By.CssSelector("div[data-identity='trip-list']"));
-                    var viagens = ListaDeViagens.FindElements(By.CssSelector("div[data-identity='trip-container']"));
+                    var ListaDeViagens = driver.FindElement(By.CssSelector("div[data-identity='trip-list']")); // Eu encontro a grid do site.
+                    var viagens = ListaDeViagens.FindElements(By.CssSelector("div[data-identity='trip-container']")); // Com o grid selecionado/encontrado eu entro no container´s.
 
-                    foreach (var viagem in viagens)
+                    foreach (var viagem in viagens) // A variavel 'VIAGENS' são os containe´s encontrados. Atente para o fato que assim posso ter varias viagens no grid, elas vão ser contadas.
                     {
-                        var objetoViagem = new UberViagem();
+                        var objetoViagem = new UberViagem(); 
 
-                        var valorDaViagem = viagem.FindElement(By.ClassName("c9")).Text;
+                        var valorDaViagem = viagem.FindElement(By.ClassName("c9")).Text; // Entro no valor da viagens e pego o seu texto
+                        var DataDaViagem = viagem.FindElement(By.ClassName("an")).Text; // Entro no texto do primeiro container. Como a data nao tem identificador especifico eu tenho que pegar todo o texto do container e trabalhar nele.
+
                         //
-                        var itemAserRemovido = ubl.Cortar(valorDaViagem);
-                        objetoViagem.Valor = ubl.Conversao(itemAserRemovido);
+                        var obterData = ubl.ObterAData(DataDaViagem); // Uso o metodo ObterAData ele corta o texto com obeservando onde tem um ',';
+                        var itemAserRemovido = ubl.CortarValor(valorDaViagem); // Uso o metodo CortarValor para obter so a string que contem o valor, retirando o textos que não servem em primeiro momento para o objetivo da tarefa.
+                        objetoViagem.Valor = ubl.Conversao(itemAserRemovido); // Converto a string para DECIMAL que ja foi trabalhada no item acima 'itemAserRemovido' usando o metodo 'Conversao'.E coloco o valor dentro da variavel objetoViagem.
+                        objetoViagem.Data = obterData; // Coloco a DATA dentro da variavel objetoViagem
                         //
-                        objetosViagem.Add(objetoViagem);
+                        objetosViagem.Add(objetoViagem); // Coloco os valores dentro do OBJETO 'objetosViagem'.
 
                     }
-                    page.CliqueBotaoProximaPagina();
+                    page.CliqueBotaoProximaPagina(); // Clico no botao proxima pagina, se ela estiver disponivel.
 
                 }
-                else { break; }
-                    
-
-            }          
+                else { break; } // Se caso o  botão proxima pagina nao estiver disponivel o laço de repetição sera quebrado e seguira.
+                Finalização();             
+           }          
         }
     }
 }

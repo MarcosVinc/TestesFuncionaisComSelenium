@@ -10,10 +10,17 @@ namespace TestesFuncionaisComSelenium._3___Serviços
         Utilidades util = new Utilidades();
         string ItemASerCortado = "R$ ";
         string cancelado = "Cancelada";
-        public string Cortar(string variavel) 
+        public string CortarValor(string variavel) 
         {
             // CORTAR R$:
             return variavel.Replace(ItemASerCortado, "").Replace(cancelado, "");
+        }
+        public string ObterAData(string variavel)
+        {
+            // Obter Data:
+            char[] demilitar = { ',' };
+            string[] palavras = variavel.Split(demilitar);
+            return palavras[0];
         }
         public string ItemVerificar(string variavel) 
         {
