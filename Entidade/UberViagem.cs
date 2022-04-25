@@ -9,4 +9,5 @@ namespace TestesFuncionaisComSelenium.Entidade
         public string Data {get; set;}
         public decimal Valor { get; set; }       
     }
+
 }

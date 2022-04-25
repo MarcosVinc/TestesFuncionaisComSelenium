@@ -39,6 +39,10 @@ namespace TestesFuncionaisComSelenium._2___PageObjects
         {
             dls.ClickByCssSelector("div[data-identity='pagination-next']");
         }
+        public void EsperaImplicita() 
+        {
+            dls.DeveUtilizarAEsperaImplicita();
+        }
 
     }
 }
