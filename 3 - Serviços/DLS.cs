@@ -69,5 +69,9 @@ namespace TestesFuncionaisComSelenium
         {           
             driver.FindElement(By.Id(id_campo)).SendKeys(texto);
         }
+        public void DeveUtilizarAEsperaImplicita() 
+        {
+            driver.Manage().Timeouts().ImplicitWait =TimeSpan.FromSeconds(10);
+        }
     }
 }

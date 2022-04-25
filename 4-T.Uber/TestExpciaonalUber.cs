@@ -5,6 +5,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using TestesFuncionaisComSelenium._2___PageObjects;
 using TestesFuncionaisComSelenium._3___Serviços;
@@ -24,7 +25,7 @@ namespace TestesFuncionaisComSelenium._1___Testes
             //ABRINDO O SITE E COLOCANDO E MUDANDO SEU TAMANHO
 
             driver.Navigate().GoToUrl("https://riders.uber.com/trips?state=pS87G4_VXaxj_RmyJKWnZ0bOrFVXl2Pk_UVZBEN4KiA%3D&_csid=dKvTM2Qhe3P4crKzzulNMQ");
-            System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(950, 710);
+            System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(1200, 980);
             driver.Manage().Window.Size = _tamanhoDeTela;
             dls = new DLS(driver);
             page = new UberPO(driver);
@@ -42,23 +43,25 @@ namespace TestesFuncionaisComSelenium._1___Testes
         {
             Inicialização();
             var objetosViagem = new List<UberViagem>();
-            Thread.Sleep(500);
-
             //Login
             page.InserirEmail("Seu Email", "useridInput");
             page.ClicarNoBotaoXPath("/html/body/div[1]/div/div/div/div[1]/form/div[2]/button");
-            Thread.Sleep(500);
+            page.EsperaImplicita();
             page.InserirSenha("password", "Sua Senha");
             page.ClicarNoBotaoXPath("/html/body/div[1]/div/div/div/div/form/div[2]/button");
-            Thread.Sleep(500);
+            page.EsperaImplicita();
 
             // Pegar e somar viagens
+            ;
             while (true) // Enquanto o botão de proximo estiver visivel esse while estara em circuito fechado
             {
+
+               
                 if (driver.FindElement(By.CssSelector("div[data-identity='pagination-next']")).Displayed) // Nessa linha eu vejo e o botão proximo esta disponivel para clicar
                 {
                     var ListaDeViagens = driver.FindElement(By.CssSelector("div[data-identity='trip-list']")); // Eu encontro a grid do site.
                     var viagens = ListaDeViagens.FindElements(By.CssSelector("div[data-identity='trip-container']")); // Com o grid selecionado/encontrado eu entro no container´s.
+
 
                     foreach (var viagem in viagens) // A variavel 'VIAGENS' são os containe´s encontrados. Atente para o fato que assim posso ter varias viagens no grid, elas vão ser contadas.
                     {
@@ -76,12 +79,15 @@ namespace TestesFuncionaisComSelenium._1___Testes
                         objetosViagem.Add(objetoViagem); // Coloco os valores dentro do OBJETO 'objetosViagem'.
 
                     }
+                  
                     page.CliqueBotaoProximaPagina(); // Clico no botao proxima pagina, se ela estiver disponivel.
 
                 }
                 else { break; } // Se caso o  botão proxima pagina nao estiver disponivel o laço de repetição sera quebrado e seguira.
                 Finalização();             
-           }          
+           }
+
+            var total = objetosViagem.Sum(x => x.Valor);
         }
     }
 }
