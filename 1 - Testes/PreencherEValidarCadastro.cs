@@ -16,6 +16,7 @@ namespace TestesFuncionaisComSelenium
         private CadastroCampoDeTreinamentoPO page;
 
 
+
         public void Inicialização()
         {
             //ABRINDO O SITE E COLOCANDO E MUDANDO SEU TAMANHO
@@ -25,6 +26,7 @@ namespace TestesFuncionaisComSelenium
             driver.Manage().Window.Size = _tamanhoDeTela;
             dls = new DLS(driver);
             page = new CadastroCampoDeTreinamentoPO(driver);
+
         }
 
         public void Finalização()
