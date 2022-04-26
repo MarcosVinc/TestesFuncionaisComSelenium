@@ -44,29 +44,31 @@ namespace TestesFuncionaisComSelenium._1___Testes
             Inicialização();
             var objetosViagem = new List<UberViagem>();
             //Login
-            page.InserirEmail("Seu Email", "useridInput");
-            page.ClicarNoBotaoXPath("/html/body/div[1]/div/div/div/div[1]/form/div[2]/button");
-            page.EsperaImplicita();
-            page.InserirSenha("password", "Sua Senha");
+            page.InserirEmail("Sua Senha", "useridInput");
+            page.ClicarNoBotaoXPath("/html/body/div[1]/div/div/div/div[1]/form/div[2]/button"); ;
+            page.InserirSenha("password", "SeuEmail");
             page.ClicarNoBotaoXPath("/html/body/div[1]/div/div/div/div/form/div[2]/button");
-            page.EsperaImplicita();
 
-            // Pegar e somar viagens
-            ;
+
+            // Pegar e somar viagens 
+
+
             while (true) // Enquanto o botão de proximo estiver visivel esse while estara em circuito fechado
             {
 
-               
-                if (driver.FindElement(By.CssSelector("div[data-identity='pagination-next']")).Displayed) // Nessa linha eu vejo e o botão proximo esta disponivel para clicar
+                page.Espera();
+                var btnProximoEstaHabilitado = driver.FindElement(By.CssSelector("div[data-identity='pagination-next']")).GetAttribute("disabled");
+
+                if (string.IsNullOrEmpty(btnProximoEstaHabilitado))// Nessa linha eu vejo e o botão proximo esta disponivel para clicar
                 {
+
                     var ListaDeViagens = driver.FindElement(By.CssSelector("div[data-identity='trip-list']")); // Eu encontro a grid do site.
                     var viagens = ListaDeViagens.FindElements(By.CssSelector("div[data-identity='trip-container']")); // Com o grid selecionado/encontrado eu entro no container´s.
 
-
+                    page.Espera();
                     foreach (var viagem in viagens) // A variavel 'VIAGENS' são os containe´s encontrados. Atente para o fato que assim posso ter varias viagens no grid, elas vão ser contadas.
                     {
-                        var objetoViagem = new UberViagem(); 
-
+                        var objetoViagem = new UberViagem();
                         var valorDaViagem = viagem.FindElement(By.ClassName("c9")).Text; // Entro no valor da viagens e pego o seu texto
                         var DataDaViagem = viagem.FindElement(By.ClassName("an")).Text; // Entro no texto do primeiro container. Como a data nao tem identificador especifico eu tenho que pegar todo o texto do container e trabalhar nele.
 
@@ -77,18 +79,21 @@ namespace TestesFuncionaisComSelenium._1___Testes
                         objetoViagem.Data = obterData; // Coloco a DATA dentro da variavel objetoViagem
                         //
                         objetosViagem.Add(objetoViagem); // Coloco os valores dentro do OBJETO 'objetosViagem'.
-
                     }
-                  
                     page.CliqueBotaoProximaPagina(); // Clico no botao proxima pagina, se ela estiver disponivel.
 
                 }
-                else { break; } // Se caso o  botão proxima pagina nao estiver disponivel o laço de repetição sera quebrado e seguira.
-                Finalização();             
-           }
-
+                else
+                {
+                    break;
+                } // Se caso o  botão proxima pagina nao estiver disponivel o laço de repetição sera quebrado e seguira.
+            }
             var total = objetosViagem.Sum(x => x.Valor);
+            Finalização();
+
         }
     }
 }
 
+// var total = objetosViagem.Sum(x => x.Valor);
+//Finalização();
