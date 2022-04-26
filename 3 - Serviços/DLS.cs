@@ -57,10 +57,6 @@ namespace TestesFuncionaisComSelenium
         {
             driver.FindElement(By.XPath(xp_campo)).Click();
         }
-        public void EntrarEmDiferentesAbas()
-        {
-            Thread.Sleep(500);
-        }
         public void InserirEmail(string email, string id_campo) 
         {           
             driver.FindElement(By.Id(id_campo)).SendKeys(email);
@@ -71,7 +67,19 @@ namespace TestesFuncionaisComSelenium
         }
         public void DeveUtilizarAEsperaImplicita() 
         {
-            driver.Manage().Timeouts().ImplicitWait =TimeSpan.FromSeconds(10);
+            driver.Manage().Timeouts().ImplicitWait =TimeSpan.FromSeconds(50);
         }
+        public void DeveVerificarSeOElementoEstaVisivel(string nome) 
+        {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            _ = driver.FindElement(By.CssSelector(nome)).Displayed;
+            //div[data-identity='pagination-next']
+        }
+        public string ObterTextoClassName(string texto)
+        {
+            return driver.FindElement(By.ClassName(texto)).Text;
+        }
+
+        //FindElement(By.ClassName("c9")).Text;
     }
 }
