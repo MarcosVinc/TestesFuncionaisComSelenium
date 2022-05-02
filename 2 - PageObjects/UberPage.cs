@@ -6,11 +6,11 @@ using System.Threading;
 
 namespace TestesFuncionaisComSelenium._2___PageObjects
 {
-    public class UberPO
+    public class UberPage
     {
         private DLS dls;
 
-        public UberPO(WebDriver driver)
+        public UberPage(WebDriver driver)
         {
             dls = new DLS(driver);
         }

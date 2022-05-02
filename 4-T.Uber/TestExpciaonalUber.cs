@@ -17,7 +17,7 @@ namespace TestesFuncionaisComSelenium._1___Testes
     {
         ChromeDriver driver = new ChromeDriver();
         private DLS dls;
-        private UberPO page;
+        private UberPage page;
         UberLogica ubl = new UberLogica();
 
         public void Inicialização()
@@ -28,7 +28,7 @@ namespace TestesFuncionaisComSelenium._1___Testes
             System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(1200, 980);
             driver.Manage().Window.Size = _tamanhoDeTela;
             dls = new DLS(driver);
-            page = new UberPO(driver);
+            page = new UberPage(driver);
         }
 
         public void Finalização()
@@ -44,9 +44,9 @@ namespace TestesFuncionaisComSelenium._1___Testes
             Inicialização();
             var objetosViagem = new List<UberViagem>();
             //Login
-            page.InserirEmail("Sua Senha", "useridInput");
+            page.InserirEmail("marcos.viniciuswac@outlook.com", "useridInput");
             page.ClicarNoBotaoXPath("/html/body/div[1]/div/div/div/div[1]/form/div[2]/button"); ;
-            page.InserirSenha("password", "SeuEmail");
+            page.InserirSenha("password", "marcos454");
             page.ClicarNoBotaoXPath("/html/body/div[1]/div/div/div/div/form/div[2]/button");
 
 

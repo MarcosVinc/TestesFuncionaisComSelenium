@@ -5,10 +5,10 @@ using System.Text;
 
 namespace TestesFuncionaisComSelenium
 {
-    public class CadastroCampoDeTreinamentoPO
+    public class CadastroCampoDeTreinamentoPage
     {
         private DLS dls;
-        public CadastroCampoDeTreinamentoPO(WebDriver driver)
+        public CadastroCampoDeTreinamentoPage(WebDriver driver)
         {
             dls = new DLS(driver);
         }
