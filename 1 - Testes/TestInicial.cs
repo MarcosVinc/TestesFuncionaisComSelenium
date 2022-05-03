@@ -5,6 +5,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using PacoteServiços;
 using System;
+
 using System.Threading;
 using TestesFuncionaisComSelenium._3___Serviços;
 using static PacoteServiços.DriverFactory;
@@ -12,6 +13,7 @@ using static PacoteServiços.DriverFactory;
 namespace TestesFuncionaisComSelenium
 { 
    class TestInicial
+
     {
         public bool IsSelected { get; set; }
 
@@ -95,7 +97,6 @@ namespace TestesFuncionaisComSelenium
             alertConfirm.Accept();
             Assert.AreEqual("Confirmado", alertConfirm.Text);
             alertConfirm.Accept();
-
             Fechar();
 
         }
@@ -103,6 +104,7 @@ namespace TestesFuncionaisComSelenium
         [Test]
         public void TestIrParaOGoogle()
         {
+
             
             //Browser Google.com
             getDriver().Navigate().GoToUrl("https://www.google.com.br/");
@@ -115,10 +117,12 @@ namespace TestesFuncionaisComSelenium
         {
             // Formulario
             getDriver().Navigate().GoToUrl("file:///A:/CampoTreinamento/componentes.html");
+
             System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(950, 710);
             getDriver().Manage().Window.Size = _tamanhoDeTela;
             Thread.Sleep(500);
             getDriver().Quit();
+
         }
         [Test]
         public void testeElementosTxt()
@@ -130,6 +134,7 @@ namespace TestesFuncionaisComSelenium
             getDriver().FindElement(By.Id("elementosForm:nome")).GetAttribute("value");
             getDriver().FindElement(By.Id("elementosForm:sobrenome")).GetAttribute("value");
             Thread.Sleep(500);
+
             Fechar();
         }
         [Test]
@@ -153,6 +158,7 @@ namespace TestesFuncionaisComSelenium
             Iniciar();
             dls.PreencherCombo("elementosForm:escolaridade", superior);
             Thread.Sleep(500);
+
             Fechar();
         }
 
@@ -166,8 +172,10 @@ namespace TestesFuncionaisComSelenium
             WebElement botao = (WebElement)getDriver().FindElement(By.Id("buttonSimple"));
             botao.Click();
             Assert.AreEqual("Obrigado!", botao.GetAttribute("value"));
+
             Thread.Sleep(500);
             Fechar();
+
         }
         [Test]
         public void DeveInteragirComLinks()
@@ -177,15 +185,18 @@ namespace TestesFuncionaisComSelenium
             getDriver().FindElement(By.LinkText("Voltar")).Click();
             Thread.Sleep(500);
             Fechar();
+
         }
         [Test]
         public void DeveBuscarUmTextoNaPagina()
         {
             // Buscar um Texto Na Pagina
+
             Iniciar();
             Assert.AreEqual("Campo de Treinamento", getDriver().FindElement(By.XPath("/html/body/center/form/h3")).Text);
             Thread.Sleep(500);
             Fechar();
+
         }
     }
 }
