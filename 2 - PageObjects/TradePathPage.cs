@@ -23,7 +23,8 @@ namespace TestesFuncionaisComSelenium._2___PageObjects
         public void ClicarNoCombo(string xpath, string valor) 
         {
             dls.DeveUtilizarAEsperaImplicita();
-            dls.PreencherCombo(xpath, valor);
+            dls.PreencherComboXpath(xpath, valor);
         }
+
     }
 }

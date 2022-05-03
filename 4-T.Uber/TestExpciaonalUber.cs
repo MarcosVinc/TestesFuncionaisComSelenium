@@ -10,12 +10,13 @@ using System.Threading;
 using TestesFuncionaisComSelenium._2___PageObjects;
 using TestesFuncionaisComSelenium._3___Serviços;
 using TestesFuncionaisComSelenium.Entidade;
+using static PacoteServiços.DriverFactory;
+
 
 namespace TestesFuncionaisComSelenium._1___Testes
 {
     public class TestExpciaonalUber
     {
-        ChromeDriver driver = new ChromeDriver();
         private DLS dls;
         private UberPage page;
         UberLogica ubl = new UberLogica();
@@ -24,18 +25,15 @@ namespace TestesFuncionaisComSelenium._1___Testes
         {
             //ABRINDO O SITE E COLOCANDO E MUDANDO SEU TAMANHO
 
-            driver.Navigate().GoToUrl("https://riders.uber.com/trips?state=pS87G4_VXaxj_RmyJKWnZ0bOrFVXl2Pk_UVZBEN4KiA%3D&_csid=dKvTM2Qhe3P4crKzzulNMQ");
-            System.Drawing.Size _tamanhoDeTela = new System.Drawing.Size(1200, 980);
-            driver.Manage().Window.Size = _tamanhoDeTela;
-            dls = new DLS(driver);
-            page = new UberPage(driver);
+            getDriver().Navigate().GoToUrl("https://riders.uber.com/trips?state=pS87G4_VXaxj_RmyJKWnZ0bOrFVXl2Pk_UVZBEN4KiA%3D&_csid=dKvTM2Qhe3P4crKzzulNMQ");
+            dls = new DLS();
+            page = new UberPage();
         }
 
         public void Finalização()
         {
             //FINALIZANDO O TESTE
-
-            driver.Quit();
+            killDriver();
         }
 
         [Test]
@@ -57,12 +55,12 @@ namespace TestesFuncionaisComSelenium._1___Testes
             {
 
                 page.Espera();
-                var btnProximoEstaHabilitado = driver.FindElement(By.CssSelector("div[data-identity='pagination-next']")).GetAttribute("disabled");
+                var btnProximoEstaHabilitado = getDriver().FindElement(By.CssSelector("div[data-identity='pagination-next']")).GetAttribute("disabled");
 
                 if (string.IsNullOrEmpty(btnProximoEstaHabilitado))// Nessa linha eu vejo e o botão proximo esta disponivel para clicar
                 {
 
-                    var ListaDeViagens = driver.FindElement(By.CssSelector("div[data-identity='trip-list']")); // Eu encontro a grid do site.
+                    var ListaDeViagens = getDriver().FindElement(By.CssSelector("div[data-identity='trip-list']")); // Eu encontro a grid do site.
                     var viagens = ListaDeViagens.FindElements(By.CssSelector("div[data-identity='trip-container']")); // Com o grid selecionado/encontrado eu entro no container´s.
 
                     page.Espera();
