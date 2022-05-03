@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using static PacoteServiços.DriverFactory;
 
 namespace TestesFuncionaisComSelenium._2___PageObjects
 {
@@ -10,10 +11,6 @@ namespace TestesFuncionaisComSelenium._2___PageObjects
     {
         private DLS dls;
 
-        public UberPage(WebDriver driver)
-        {
-            dls = new DLS(driver);
-        }
         public string PegarTexto(string nome)
         {
             dls.DeveUtilizarAEsperaImplicita();

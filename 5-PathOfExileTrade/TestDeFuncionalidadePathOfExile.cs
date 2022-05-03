@@ -16,6 +16,7 @@ namespace TestesFuncionaisComSelenium._5_PathOfExileTrade
             driver.Navigate().GoToUrl("https://www.pathofexile.com/");
             System.Drawing.Size _tamanhoDaAba = new System.Drawing.Size(950, 710);
             driver.Manage().Window.Size = _tamanhoDaAba;
+            page = new TradePathPage(driver);
         }
         public void Fechar()
         {
@@ -27,9 +28,12 @@ namespace TestesFuncionaisComSelenium._5_PathOfExileTrade
         public void PathOfExileTRADE() 
         {
             Inicializar();
+            string item = "Sceptre";
 
             page.ClicarElemento("/html/body/div[1]/div[1]/ul/li[5]/a/span");
-            page.ClicarElemento("/html/body/div[1]/div[1]/ul/li[5]/div/ul/li[1]/a");
+            page.ClicarNoCombo("//*[@id=trade]/div[4]/div/div[2]/div/div[1]/div[1]/div[2]/div[1]/span/div[2]/div[2]/input", item);
+
+            Fechar();
 
 
         }
